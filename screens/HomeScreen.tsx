@@ -9,13 +9,26 @@ import {
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import ActionRow from "../components/ActionRow";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../App";
+
+export type NavigationProp = NativeStackNavigationProp<
+	RootStackParamList,
+	"Home"
+>;
 
 const HomeScreen = () => {
+	const navigation = useNavigation<NavigationProp>();
+
 	return (
 		<SafeAreaView className="flex-1 bg-gray-100 relative">
 			<ScrollView>
 				{/* PRO/UPGRADE Button */}
-				<TouchableOpacity className="absolute z-50 top-5 right-10 items-center">
+				<TouchableOpacity
+					onPress={() => navigation.navigate("Paywall")}
+					className="absolute z-50 top-5 right-10 items-center"
+				>
 					<Ionicons name="person-circle" size={30} color="#E5962D" />
 					<Text className="text-center text-[#E5962D]">UPGRADE</Text>
 				</TouchableOpacity>
